@@ -1,0 +1,99 @@
+GET http://localhost:8080/myblogweb_war/comment/get_by_article_id?id=2
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+<> 2020-08-28T052654.200.json
+
+###
+
+GET http://localhost:8080/myblogweb_war/comment/get_by_article_id?id=2
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+<> 2020-08-28T052540.500.html
+
+###
+
+GET http://localhost:8080/myblogweb_war/comment/get_by_article_id?id=2
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/x-www-form-urlencoded
+
+<> 2020-08-28T052517.500.html
+
+###
+
+GET http://localhost:8080/myblogweb_war/comment/get_by_article_id?id=2
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-28T052450.500.html
+
+###
+
+GET http://localhost:8080/myblogweb_war/article/get_count?page_num=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-24T125338.500.html
+
+###
+
+GET http://localhost:8080/myblogweb_war/article/get_count?page_num=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-24T124521.500.html
+
+###
+
+POST http://localhost:8080/myblogweb_war/article/get_pages?page_num=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-24T113931.200.json
+
+###
+
+POST http://localhost:8080/myblogweb_war/article/get_pages?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-24T113859.400.html
+
+###
+
+POST http://localhost:8080/myblogweb_war/page/get_pages?id=1
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-24T113840.404.html
+
+###
+
+GET http://localhost:8080/myblogweb_war/home/article
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-23T063023.200.json
+
+###
+
+GET http://localhost:8080/myblogweb_war/home/article
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-23T062844.200.txt
+
+###
+
+GET http://localhost:8080/myblogweb/home/article
+Accept: */*
+Cache-Control: no-cache
+
+<> 2020-08-23T062819.404.html
+
+###
+

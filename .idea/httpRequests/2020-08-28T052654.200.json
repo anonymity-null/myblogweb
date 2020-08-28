@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "detail": "评论测试",
+    "articleid": 2,
+    "userid": 1,
+    "publishtime": "2020-08-28 17:15:30"
+  },
+  {
+    "id": 2,
+    "detail": "评论测试",
+    "articleid": 2,
+    "userid": 1,
+    "publishtime": "2020-08-28 17:22:10"
+  },
+  {
+    "id": 3,
+    "detail": "评论测试",
+    "articleid": 2,
+    "userid": 1,
+    "publishtime": "2020-08-28 17:23:36"
+  }
+]

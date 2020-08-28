@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="zh">
+<head><title>HTTP Status 500 – Internal Server Error</title>
+    <style type="text/css">body {
+        font-family: Tahoma, Arial, sans-serif;
+    }
+
+    h1, h2, h3, b {
+        color: white;
+        background-color: #525D76;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 16px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    a {
+        color: black;
+    }
+
+    .line {
+        height: 1px;
+        background-color: #525D76;
+        border: none;
+    }</style>
+</head>
+<body><h1>HTTP Status 500 – Internal Server Error</h1>
+<hr class="line"/>
+<p><b>Type</b> 异常报告</p>
+<p><b>消息</b> Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: </p>
+<p><b>描述</b> 服务器遇到一个意外的情况，阻止它完成请求。</p>
+<p><b>Exception</b></p>
+<pre>org.springframework.web.util.NestedServletException: Request processing failed; nested exception is org.springframework.jdbc.BadSqlGrammarException:
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+### The error may exist in rwl&#47;ssm&#47;dao&#47;ArticleDao.xml
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select count (id) from article
+### Cause: java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+</pre>
+<p><b>Root Cause</b></p>
+<pre>org.springframework.jdbc.BadSqlGrammarException:
+### Error querying database.  Cause: java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+### The error may exist in rwl&#47;ssm&#47;dao&#47;ArticleDao.xml
+### The error may involve defaultParameterMap
+### The error occurred while setting parameters
+### SQL: select count (id) from article
+### Cause: java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+; bad SQL grammar []; nested exception is java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+	org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:93)
+	org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:81)
+	org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:88)
+	org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:440)
+	com.sun.proxy.$Proxy19.selectOne(Unknown Source)
+	org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:159)
+	org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87)
+	org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:144)
+	org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	com.sun.proxy.$Proxy21.getCount(Unknown Source)
+	rwl.ssm.service.impl.ArticleServiceImpl.getPageCount(ArticleServiceImpl.java:30)
+	rwl.ssm.controller.ArticleController.getPageCount(ArticleController.java:21)
+	sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	java.lang.reflect.Method.invoke(Method.java:498)
+	org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+</pre>
+<p><b>Root Cause</b></p>
+<pre>java.sql.SQLSyntaxErrorException: FUNCTION myblog.count does not exist. Check the &#39;Function Name Parsing and Resolution&#39; section in the Reference Manual
+	com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
+	com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
+	com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370)
+	com.mchange.v2.c3p0.impl.NewProxyPreparedStatement.execute(NewProxyPreparedStatement.java:67)
+	org.apache.ibatis.executor.statement.PreparedStatementHandler.query(PreparedStatementHandler.java:64)
+	org.apache.ibatis.executor.statement.RoutingStatementHandler.query(RoutingStatementHandler.java:79)
+	org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:63)
+	org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:324)
+	org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:156)
+	org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:109)
+	org.apache.ibatis.executor.CachingExecutor.query(CachingExecutor.java:83)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:140)
+	org.apache.ibatis.session.defaults.DefaultSqlSession.selectOne(DefaultSqlSession.java:76)
+	sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	java.lang.reflect.Method.invoke(Method.java:498)
+	org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:426)
+	com.sun.proxy.$Proxy19.selectOne(Unknown Source)
+	org.mybatis.spring.SqlSessionTemplate.selectOne(SqlSessionTemplate.java:159)
+	org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:87)
+	org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:144)
+	org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85)
+	com.sun.proxy.$Proxy21.getCount(Unknown Source)
+	rwl.ssm.service.impl.ArticleServiceImpl.getPageCount(ArticleServiceImpl.java:30)
+	rwl.ssm.controller.ArticleController.getPageCount(ArticleController.java:21)
+	sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	java.lang.reflect.Method.invoke(Method.java:498)
+	org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)
+	org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)
+	org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
+	org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
+	org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:634)
+	org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
+</pre>
+<p><b>):注意</b> 主要问题的全部 stack 信息可以在 server logs 里查看</p>
+<hr class="line"/>
+<h3>Apache Tomcat/9.0.30</h3></body>
+</html>

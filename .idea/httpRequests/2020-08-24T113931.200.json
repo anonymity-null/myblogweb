@@ -1,0 +1,42 @@
+[
+  {
+    "id": 3,
+    "title": "test",
+    "content": "test123",
+    "categoryid": 1,
+    "categoryname": "技术",
+    "createtime": "2020-08-22 06:38:06",
+    "updatetime": "2020-08-22 06:38:06",
+    "userid": 1
+  },
+  {
+    "id": 24,
+    "title": "网页测试",
+    "content": "发布文章测试",
+    "categoryid": 1,
+    "categoryname": "技术",
+    "createtime": "2020-08-23 10:20:42",
+    "updatetime": "2020-08-23 10:20:42",
+    "userid": 1
+  },
+  {
+    "id": 25,
+    "title": "一对多多对多的建表原则",
+    "content": "一对一的关系最简单，一个实体创建一张表就行了：一对多和多对一的关系建表原则是一样的，在多的一方用外键列引用‘一’的一方的主键，来保证两者之间的联系；在多的以防做冗余 多对多的关系，就是新创建一张中间表，以保证二者之间的联系。",
+    "categoryid": 1,
+    "categoryname": "技术",
+    "createtime": "2020-08-23 08:47:38",
+    "updatetime": "2020-08-23 08:47:38",
+    "userid": 1
+  },
+  {
+    "id": 26,
+    "title": "Js中String转int",
+    "content": "方案一代码：\r\n\r\nNumber(str) \r\n方案二代码：\r\n\r\n//parseInt 方法都有两个参数, 第一个参数就是要转换的对象, 第二个参数是进制基数, 可以是 2, 8, 10, 16, 默认以 10 进制处理\r\nparseInt(str)\r\n方案一与方案二对比：\r\n\r\n复制代码\r\nvar str='1250' ;\r\nalert( Number(str) );  //得到1250\r\nalert(parseInt(str));  //得到1250\r\nvar str1='00100';\r\nalert( Number(str1) );  //得到100\r\nalert(parseInt(str1));  //得到64\r\n复制代码\r\n注意：parseInt方法在format'00'开头的数字时会当作2进制转10进制的方法进行转换；\r\n\r\n所以建议string转int最好用Number方法；",
+    "categoryid": 1,
+    "categoryname": "技术",
+    "createtime": "2020-08-24 10:09:17",
+    "updatetime": "2020-08-24 10:09:30",
+    "userid": 1
+  }
+]
