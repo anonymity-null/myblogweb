@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rwl.ssm.dao.ArticleDao">
+    <select id="getThreeArticle" resultType="rwl.ssm.bean.ArticleBean">
+        select * from article limit 3;
+    </select>
+    <select id="getArticleByPage" resultType="rwl.ssm.bean.ArticleBean" parameterType="Integer">
+        select * from article limit 4 offset #{page_num}
+    </select>
+    <select id="getCount" resultType="Integer">
+        select count(id) from article
+    </select>
+    <select id="getCategoryCount" resultType="Integer" parameterType="Integer">
+        select count(categoryid) from article where categoryid=#{categoryid}
+    </select>
+</mapper>

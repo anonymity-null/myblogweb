@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>文章</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/fontastic.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="shortcut icon" href="favicon.png">
+
+    <![endif]-->
+    <script src="js/getXmlHttpRequest.js"></script>
+    <script>
+        var json;
+        var xmlHttp = getXmlhttp();
+        var getCountHttp=getXmlhttp();
+        getCountHttp.onreadystatechange=function(){
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                var count=getCountHttp.responseText;
+                $("#page_count").text("共"+count+"页");
+            }
+        }
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                json = JSON.parse(xmlHttp.responseText);
+
+                var article_title1 = $("#article_title1");
+                article_title1.text(json[0].title);
+                var article_content1=$("#article_content1");
+                article_content1.text(json[0].content);
+                var article_updatetime1=$("#article_updatetime1");
+                article_updatetime1.text(json[0].updatetime);
+                var article_category1=$("#article_category1");
+                article_category1.text(json[0].category);
+                var article_createtime1=$("#article_createtime1");
+                article_createtime1.text(json[0].createtime);
+                var article_cover1=$("#article_cover1");
+                article_cover1.attr("src",json[0].img);
+
+                var article_title2 = $("#article_title2");
+                article_title2.text(json[1].title);
+                var article_content2=$("#article_content2");
+                article_content2.text(json[1].content);
+                var article_updatetime2=$("#article_updatetime2");
+                article_updatetime2.text(json[1].updatetime);
+                var article_category2=$("#article_category2");
+                article_category2.text(json[1].category);
+                var article_createtime2=$("#article_createtime2");
+                article_createtime2.text(json[1].createtime);
+                var article_cover2=$("#article_cover2");
+                article_cover2.attr("src",json[1].img);
+
+                var article_title3 = $("#article_title3");
+                article_title3.text(json[2].title);
+                var article_content3=$("#article_content3");
+                article_content3.text(json[2].content);
+                var article_updatetime3=$("#article_updatetime3");
+                article_updatetime3.text(json[2].updatetime);
+                var article_category3=$("#article_category3");
+                article_category3.text(json[2].category);
+                var article_createtime3=$("#article_createtime3");
+                article_createtime3.text(json[2].createtime);
+                var article_cover3=$("#article_cover3");
+                article_cover3.attr("src",json[2].img);
+
+                var article_title4 = $("#article_title4");
+                article_title4.text(json[3].title);
+                var article_content4=$("#article_content4");
+                article_content4.text(json[3].content);
+                var article_updatetime4=$("#article_updatetime4");
+                article_updatetime4.text(json[3].updatetime);
+                var article_category4=$("#article_category4");
+                article_category4.text(json[3].category);
+                var article_createtime4=$("#article_createtime4");
+                article_createtime4.text(json[3].createtime);
+                var article_cover4=$("#article_cover4");
+                article_cover4.attr("src",json[3].img);
+            }
+        }
+
+        window.onload=function (ev) {
+            var page_node=$("#page_num");
+            var num=parseInt(page_node.val());
+            var offset=(num-1)*4;
+
+            console.log(offset);
+
+            xmlHttp.open("POST","/myblogweb_war/article/get_pages",true);
+            xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttp.send("page_num="+offset);
+
+            getCountHttp.open("GET","/myblogweb_war/article/get_count",true);
+            getCountHttp.send();
+
+        }
+
+
+        function prePage(node) {
+
+            var page = $("#page_num");
+            var page_num = page.val();
+            if (page_num == 1) {
+                node.disabled();
+            }
+            page.val(parseInt(page_num) - 1);
+
+            var num=parseInt(page.val());
+            var offset=(num-1)*4;
+
+            xmlHttp.open("POST","/myblogweb_war/article/get_pages",true);
+            xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttp.send("page_num="+offset);
+
+        }
+
+        function nextPage() {
+
+            var page = $("#page_num");
+            var page_num = page.val();
+
+            page.val(parseInt(page_num) + 1);
+
+            var num=parseInt(page.val());
+            var offset=(num-1)*4;
+
+            xmlHttp.open("POST","/myblogweb_war/article/get_pages",true);
+            xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlHttp.send("page_num="+offset);
+        }
+
+        function goPage() {
+
+        }
+
+        function goPost(i) {
+            console.log(json[i]);
+            window.location.href="post.html?"+escape(JSON.stringify(json[i]));
+        }
+    </script>
+    <style>
+        p.text-muted{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 55px;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <!-- Main Navbar-->
+    <nav class="navbar navbar-expand-lg">
+        <div class="search-area">
+            <div class="search-area-inner d-flex align-items-center justify-content-center">
+                <div class="close-btn"><i class="icon-close"></i></div>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-8">
+                        <form action="#">
+                            <div class="form-group">
+                                <input type="search" name="search" id="search" placeholder="What are you looking for?">
+                                <button type="submit" class="submit"><i class="icon-search-1"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- Navbar Brand -->
+            <div class="navbar-header d-flex align-items-center justify-content-between">
+                <!-- Navbar Brand --><a href="index.html" class="navbar-brand">MyBlog</a>
+                <!-- Toggle Button-->
+                <button type="button" data-toggle="collapse" data-target="#navbarcollapse"
+                        aria-controls="navbarcollapse" aria-expanded="false" aria-label="Toggle navigation"
+                        class="navbar-toggler"><span></span><span></span><span></span></button>
+            </div>
+            <!-- Navbar Menu -->
+            <div id="navbarcollapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link ">首页</a>
+                    </li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link active ">文章</a>
+                    </li>
+
+                    <li class="nav-item"><a href="#" class="nav-link ">联系我</a>
+                    </li>
+                </ul>
+                <div class="navbar-text"><a href="#" class="search-btn"><i class="icon-search-1"></i></a></div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Latest Posts -->
+        <main class="posts-listing col-lg-8">
+            <div class="container">
+                <div class="row">
+                    <!-- 文章1 -->
+                    <div class="post col-xl-6">
+                        <div class="post-thumbnail"><a href="javascript:void(0)"><img id="article_cover1" src="img/blog-post-1.jpeg" alt="..."
+                                                                             class="img-fluid"></a></div>
+                        <div class="post-details">
+                            <div class="post-meta d-flex justify-content-between">
+                                <div class="date meta-last" id="article_updatetime1">20 May | 2019</div>
+                                <div class="category" id="article_category1"><a href="#">Business</a></div>
+                            </div>
+                            <a href="javascript:void(0)" onclick="goPost(0)">
+                                <h3 class="h4" id="article_title1" style="height: 55px">Alberto Savoia Can Teach You About Interior</h3></a>
+                            <p class="text-muted" id="article_content1">Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <footer class="post-footer d-flex align-items-center"><a href="#"
+                                                                                     class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                                <div class="title"><span>WeiLong</span></div>
+                            </a>
+                                <div class="date"><i class="icon-clock"></i> <span
+                                        id="article_createtime1">2 months ago</span></div>
+                                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- 文章2             -->
+                    <div class="post col-xl-6">
+                        <div class="post-thumbnail"><a href="javascript:void(0)"><img id="article_cover2" src="img/blog-post-1.jpeg" alt="..."
+                                                                             class="img-fluid"></a></div>
+                        <div class="post-details">
+                            <div class="post-meta d-flex justify-content-between">
+                                <div class="date meta-last" id="article_updatetime2">20 May | 2019</div>
+                                <div class="category" id="article_category2"><a href="#">Business</a></div>
+                            </div>
+                            <a href="javascript:void(0)" onclick="goPost(1)">
+                                <h3 class="h4" id="article_title2">Alberto Savoia Can Teach You About Interior</h3></a>
+                            <p class="text-muted" id="article_content2">Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <footer class="post-footer d-flex align-items-center"><a href="#"
+                                                                                     class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                                <div class="title"><span>WeiLong</span></div>
+                            </a>
+                                <div class="date"><i class="icon-clock"></i> <span
+                                        id="article_createtime2">2 months ago</span></div>
+                                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- 文章3             -->
+                    <div class="post col-xl-6">
+                        <div class="post-thumbnail"><a href="javascript:void(0)"><img id="article_cover3" src="img/blog-post-1.jpeg" alt="..."
+                                                                             class="img-fluid"></a></div>
+                        <div class="post-details">
+                            <div class="post-meta d-flex justify-content-between">
+                                <div class="date meta-last" id="article_updatetime3">20 May | 2019</div>
+                                <div class="category" id="article_category3"><a href="#">Business</a></div>
+                            </div>
+                            <a href="javascript:void(0)" onclick="goPost(2)">
+                                <h3 class="h4" id="article_title3">Alberto Savoia Can Teach You About Interior</h3></a>
+                            <p class="text-muted" id="article_content3" style="height: 55px">Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <footer class="post-footer d-flex align-items-center"><a href="#"
+                                                                                     class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                                <div class="title"><span>WeiLong</span></div>
+                            </a>
+                                <div class="date"><i class="icon-clock"></i> <span
+                                        id="article_createtime3">2 months ago</span></div>
+                                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                            </footer>
+                        </div>
+                    </div>
+                    <!-- 文章4 -->
+                    <div class="post col-xl-6">
+                        <div class="post-thumbnail"><a href="javascript:void(0)"><img id="article_cover4" src="img/blog-post-1.jpeg" alt="..."
+                                                                             class="img-fluid"></a></div>
+                        <div class="post-details">
+                            <div class="post-meta d-flex justify-content-between">
+                                <div class="date meta-last" id="article_updatetime4">20 May | 2019</div>
+                                <div class="category" id="article_category4"><a href="#">Business</a></div>
+                            </div>
+                            <a href="javascript:void(0)" onclick="goPost(3)">
+                                <h3 class="h4" id="article_title4" style="height: 55px">Alberto Savoia Can Teach You About Interior</h3></a>
+                            <p class="text-muted" id="article_content4">Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                            <footer class="post-footer d-flex align-items-center"><a href="#"
+                                                                                     class="author d-flex align-items-center flex-wrap">
+                                <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid"></div>
+                                <div class="title"><span>WeiLong</span></div>
+                            </a>
+                                <div class="date"><i class="icon-clock"></i> <span
+                                        id="article_createtime4">2 months ago</span></div>
+                                <div class="comments meta-last"><i class="icon-comment"></i>12</div>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination pagination-template d-flex justify-content-center">
+                        <li class="page-item"><a href="javascript:void(0)" onclick="prePage(this)" class="page-link"> <i
+                                class="fa fa-angle-left"></i></a></li>
+                        <li class="page-item"><input width="20px" class="page-link" type="text" value="1"
+                                                     id="page_num"/></li>
+                        <li class="page-item"><a href="javascript:void(0)" onclick="nextPage()" class="page-link"> <i
+                                class="fa fa-angle-right"></i></a></li>
+                        <li><label onclick="goPage()" class="page-link">GO</label></li>&nbsp;&nbsp;
+                        <li><label id="page_count" class="page-link">共5页</label></li>
+                    </ul>
+                </nav>
+            </div>
+        </main>
+        <aside class="col-lg-4">
+            <!-- Widget [Search Bar Widget]-->
+            <div class="widget search">
+                <header>
+                    <h3 class="h6">搜索文章</h3>
+                </header>
+                <form action="#" class="search-form">
+                    <div class="form-group">
+                        <input type="search" placeholder="What are you looking for?">
+                        <button type="submit" class="submit"><i class="icon-search"></i></button>
+                    </div>
+                </form>
+            </div>
+            <!-- Widget [Latest Posts Widget]        -->
+            <div class="widget latest-posts">
+                <header>
+                    <h3 class="h6">最新文章</h3>
+                </header>
+                <div class="blog-posts"><a href="#">
+                    <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
+                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                            <div class="d-flex align-items-center">
+                                <div class="views"><i class="icon-eye"></i> 500</div>
+                                <div class="comments"><i class="icon-comment"></i>12</div>
+                            </div>
+                        </div>
+                    </div>
+                </a><a href="#">
+                    <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
+                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                            <div class="d-flex align-items-center">
+                                <div class="views"><i class="icon-eye"></i> 500</div>
+                                <div class="comments"><i class="icon-comment"></i>12</div>
+                            </div>
+                        </div>
+                    </div>
+                </a><a href="#">
+                    <div class="item d-flex align-items-center">
+                        <div class="image"><img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
+                        <div class="title"><strong>Alberto Savoia Can Teach You About</strong>
+                            <div class="d-flex align-items-center">
+                                <div class="views"><i class="icon-eye"></i> 500</div>
+                                <div class="comments"><i class="icon-comment"></i>12</div>
+                            </div>
+                        </div>
+                    </div>
+                </a></div>
+            </div>
+            <!-- Widget [Categories Widget]-->
+            <div class="widget categories">
+                <header>
+                    <h3 class="h6">分类</h3>
+                </header>
+                <div class="item d-flex justify-content-between"><a href="#">Growth</a><span>12</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Sales</a><span>8</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Tips</a><span>17</span></div>
+                <div class="item d-flex justify-content-between"><a href="#">Local</a><span>25</span></div>
+            </div>
+            <!-- Widget [Tags Cloud Widget]-->
+            <div class="widget tags">
+                <header>
+                    <h3 class="h6">标签</h3>
+                </header>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#" class="tag">#Business</a></li>
+                    <li class="list-inline-item"><a href="#" class="tag">#Technology</a></li>
+                    <li class="list-inline-item"><a href="#" class="tag">#Fashion</a></li>
+                    <li class="list-inline-item"><a href="#" class="tag">#Sports</a></li>
+                    <li class="list-inline-item"><a href="#" class="tag">#Economy</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>
+<!-- Page Footer-->
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="logo">
+                    <h6 class="text-white">Bootstrap Blog</h6>
+                </div>
+                <div class="contact-details">
+                    <p>53 Broadway, Broklyn, NY 11249</p>
+                    <p>Phone: (020) 123 456 789</p>
+                    <p>Email: <a href="mailto:info@company.com">Info@Company.com</a></p>
+                    <ul class="social-menu">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-behance"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="menus d-flex">
+                    <ul class="list-unstyled">
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Add Listing</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy &amp; Policy</a></li>
+                    </ul>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Our Partners</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">How It Works</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="latest-posts"><a href="#">
+                    <div class="post d-flex align-items-center">
+                        <div class="image"><img src="img/small-thumbnail-1.jpg" alt="..." class="img-fluid"></div>
+                        <div class="title"><strong>Hotels for all budgets</strong><span class="date last-meta">October 26, 2019</span>
+                        </div>
+                    </div>
+                </a><a href="#">
+                    <div class="post d-flex align-items-center">
+                        <div class="image"><img src="img/small-thumbnail-2.jpg" alt="..." class="img-fluid"></div>
+                        <div class="title"><strong>Great street atrs in London</strong><span class="date last-meta">October 26, 2019</span>
+                        </div>
+                    </div>
+                </a><a href="#">
+                    <div class="post d-flex align-items-center">
+                        <div class="image"><img src="img/small-thumbnail-3.jpg" alt="..." class="img-fluid"></div>
+                        <div class="title"><strong>Best coffee shops in Sydney</strong><span class="date last-meta">October 26, 2019</span>
+                        </div>
+                    </div>
+                </a></div>
+            </div>
+        </div>
+    </div>
+    <div class="copyrights">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Copyright &copy; 2019.Company name All rights reserved.<a target="_blank"
+                                                                                 href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+                    </p>
+                </div>
+                <div class="col-md-6 text-right">
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- JavaScript files-->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/popper.js/umd/popper.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="vendor/jquery.cookie/jquery.cookie.js"></script>
+<script src="vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+<script src="js/front.js"></script>
+</body>
+</html>
